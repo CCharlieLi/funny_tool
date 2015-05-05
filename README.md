@@ -32,7 +32,7 @@ python dytt.py
 python dytt.py -page=2
 ```
 
-- Check the 
+- Check the dytt_log.txt for movies' links!
 
 ### Author
 
