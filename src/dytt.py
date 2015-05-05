@@ -49,8 +49,8 @@ class dytt(object):
             print "INFO downloading page: "+index_url
             index_url = self.prefix + index_url
 
-            data = urllib2.urlopen(index_url).read().decode('gbk', 'ignore')
-            data.encode('utf-8')
+            data = urllib2.urlopen(index_url).read().decode('gb2312', 'ignore')
+            data.encode('utf8')
 
             soup = BeautifulSoup.BeautifulSoup(data)
             lists = soup.findAll('a', {"class": "ulink"})
