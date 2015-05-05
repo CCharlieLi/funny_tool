@@ -1,0 +1,11 @@
+
+~*
+*~
+*.jpg
+
+# merge conflict files
+*.rej
+*.orig
+
+# vim buffer files
+*.swp
