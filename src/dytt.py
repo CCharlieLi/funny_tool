@@ -14,7 +14,7 @@ class dytt(object):
         ''' open URL and get DOM '''
 
         data = urllib2.urlopen(source_url).read().decode('gb2312', 'ignore')
-        data.encode('utf8')
+        data.encode('utf-8')
 
         ''' find characters '''
 
@@ -30,7 +30,7 @@ class dytt(object):
         #    res = re.compile(r'(ftp://.*?\.mkv)')
         #    ftp_link = str(res.findall(str(data))[0]).decode('utf-8')
 
-        return str(ftp_link.encode('utf8'))
+        return str(ftp_link.encode('utf-8'))
 
 
     ''' first page only for now '''
@@ -50,7 +50,7 @@ class dytt(object):
             index_url = self.prefix + index_url
 
             data = urllib2.urlopen(index_url).read().decode('gb2312', 'ignore')
-            data.encode('utf8')
+            data.encode('utf-8')
 
             soup = BeautifulSoup.BeautifulSoup(data)
             lists = soup.findAll('a', {"class": "ulink"})
@@ -60,7 +60,7 @@ class dytt(object):
                     name = each.string
                     link = each["href"]
                     #print isinstance(name, unicode) 
-                    log.write(name.encode('utf8')+"\n")
+                    log.write(name.encode('utf-8')+"\n")
                     #log.write(link+"\n")
                     log.write(self.get_FTP(link)+"\n")
 
