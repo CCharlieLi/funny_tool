@@ -37,7 +37,7 @@ class dytt(object):
 
     def get_Latest_URLs(self, page=1):
         ''' read latest from file '''
-        log = open("dytt_log.txt","r+a")
+        log = open("tool_dytt/dytt_log.txt","r+a")
         try:
             latest = int(log.readlines()[-1])
         except Exception, e:

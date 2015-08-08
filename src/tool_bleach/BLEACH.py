@@ -10,7 +10,7 @@ class BLEACH(object):
 
     def mkdir(self,name):
         cwdir = os.getcwd()
-        path = cwdir+"/BLEACH/" + name
+        path = cwdir+"/tool_bleach/BLEACH/" + name
 
         if not os.path.exists(path):
             os.makedirs(path)
@@ -62,11 +62,12 @@ class BLEACH(object):
         data.encode('utf-8')
 
         soup = BeautifulSoup.BeautifulSoup(data)
-        lists = soup.findAll('a', {"class": "j_th_tit"})
-
+        lists = soup.findAll('a', {"class": "j_th_tit "})
+        #print lists
         for each in lists:
             name = each["title"].encode('utf8')
             if "★★★" in name and "bleach" in name and "【漫画】" in name:
+                #print name
                 self.get_Comics(each["title"],each["href"])
         
 if __name__ == "__main__":
