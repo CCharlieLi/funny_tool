@@ -16,8 +16,8 @@ setup(
     author='CCharlieLi',
     author_email='ccharlieli@live.com',
     url='https://github.com/CCharlieLi/funny_tool',
-    download_url = 'https://github.com/peterldowns/mypackage/tarball/0.1', # I'll explain this in a second
-    keywords = ['download', 'bleach', 'dytt'], # arbitrary keywords
+    download_url = '',
+    keywords = ['download', 'bleach', 'dytt'],
     license='MIT',
     packages=['funny_tool'],
     zip_safe=False,
