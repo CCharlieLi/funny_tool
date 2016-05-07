@@ -1,5 +1,5 @@
-from .BLEACH import BLEACH
-from .DYTT import DYTT
+from .bleach import BLEACH
+from .dytt import DYTT
 import argparse
 
 b = BLEACH()
