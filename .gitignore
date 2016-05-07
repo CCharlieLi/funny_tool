@@ -3,7 +3,8 @@
 *~
 *.jpg
 BLEACH/
-DYTT.*
+*.txt
+*.pyc
 
 # merge conflict files
 *.rej
