@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-import urllib2,BeautifulSoup
-import re,time,argparse
+import urllib2, BeautifulSoup
+import re, time, argparse
 
 class dytt(object):
 
