@@ -1,17 +1,23 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 from .bleach import BLEACH
 from .dytt import DYTT
 import argparse
 
-b = BLEACH()
-b.get_Latest_URLs()
-
-parser = argparse.ArgumentParser(description="parameters error")
-parser.add_argument('-page',action="store",dest="page",type=int,required=False)
+parser = argparse.ArgumentParser(description = "funny_tool: Download movies and comics!")
+parser.add_argument('-b', '--bleach', action="store_true", help="Download BLEACH.")
+parser.add_argument('-d', '--dytt', action="store_true", help="Download latest movies from dytt.")
+parser.add_argument('-p', '--page', action="store", type=int, default=1, help="pages to retrieve when downloading movies from dytt.")
 given_args = parser.parse_args()
-page = given_args.page
 
-t = DYTT()
-if page == None:
-    page = 1
+if given_args.bleach:
+	b = BLEACH()
+	b.get_Latest_URLs()
 
-t.get_Latest_URLs(page)
+if given_args.dytt:
+	t = DYTT()
+	t.get_Latest_URLs(given_args.page)
+
+if given_args.bleach == False and given_args.dytt == False:
+	parser.print_help()

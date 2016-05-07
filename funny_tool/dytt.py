@@ -1,7 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+
 import urllib2, BeautifulSoup
 import os, time, argparse
+from tqdm import tqdm
 
 class DYTT(object):
 
@@ -49,12 +51,16 @@ class DYTT(object):
         try:
             latest = int(log.readlines()[-1])
         except Exception, e:
-            latest = 44777
+            latest = 0
 
+        count = 0
         for each in range(1,page+1)[::-1]:
             index_url="/html/gndy/dyzz/list_23_" + str(each) + ".html"
             print("Downloading page: " + str(each))
             index_url = self.prefix + index_url
+
+            # Define progress bar's length
+            progress_bar = tqdm(unit='link', total=25)
 
             # Parse html
             data = urllib2.urlopen(index_url).read().decode('gb2312', 'ignore')
@@ -62,7 +68,6 @@ class DYTT(object):
             soup = BeautifulSoup.BeautifulSoup(data)
             lists = soup.findAll('a', {"class": "ulink"})
             
-            count = 0
             for each in lists[::-1]:
                 latest_num = int(each["href"].split("/")[-1].split(".")[0])
                 if latest < latest_num:
@@ -70,9 +75,12 @@ class DYTT(object):
                     log.write(self.get_FTP(link)+"\n")
                     latest = latest_num
                     count = count + 1
+                    progress_bar.update(1)
             
             # Write latest
             log.write(str(latest)+"\n")
+            # Close bar
+            progress_bar.close()
 
         log.close()
         print("DYTT: Download finished!  " + str(count) + "  movies downloaded. Check BLEACH directory.")
