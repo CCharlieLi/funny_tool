@@ -30,11 +30,11 @@ class BLEACH(object):
         if not self.mkdir(name):
             again = ""
             while (1):
-                again = str(raw_input("Directory already exists, do you wanna to download again? (Y/N)"))
+                again = str(raw_input("Directory " + name.encode('utf8') + " already exists, do you wanna to download again? (Y/N)"))
                 if again == "Y" or again == "N":
                     break
             if again == "N":
-                print("Folder \"BLEACH/" + name.encode('utf8') + "\" already exists! No Downloading operation!")
+                print("Folder \"BLEACH/" + name.encode('utf8') + "\" already exists!")
                 return
             else:
                 shutil.rmtree(self.path)
@@ -47,6 +47,7 @@ class BLEACH(object):
         soup = BeautifulSoup.BeautifulSoup(data)
         lists = soup.findAll('img', {"class": "BDE_Image"})
 
+        print("Downloading: " + name)
         # Define progress bar's length
         progress_bar = tqdm(unit='Pic', total=len(lists))
         count = 0
@@ -74,11 +75,9 @@ class BLEACH(object):
 
         for each in lists:
             name = each["title"].encode('utf8')
-            if "★★★" in name and "bleach" in name and "【漫画】" in name:
+            if ("★★★" in name and "bleach" in name and "【漫画】" in name) or \
+            ("【情报】" in name and "英文全图" in name and "死神bleach" in name):
                 self.get_Comics(each["title"],each["href"])
 
         print("BLEACH: Download finished! Check BLEACH directory.")
         
-if __name__ == "__main__":
-    b = BLEACH()
-    b.get_Latest_URLs()

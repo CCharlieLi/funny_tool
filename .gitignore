@@ -2,6 +2,8 @@
 ~*
 *~
 *.jpg
+BLEACH/
+DYTT.*
 
 # merge conflict files
 *.rej
