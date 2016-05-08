@@ -6,7 +6,6 @@ import os, time, argparse
 from tqdm import tqdm
 
 class DYTT(object):
-
     def __init__(self):
         self.prefix = 'http://www.ygdy8.net'
 
