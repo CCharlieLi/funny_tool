@@ -23,7 +23,7 @@ setup(
     install_requires=['BeautifulSoup', 'tqdm'],
     zip_safe=False,
     entry_points = {
-        'console_scripts': ['ft=funny_tool.funny_tool:All'],
+        'console_scripts': ['ft=funny_tool.funny_tool:all'],
     },
     classifiers = [
         'Development Status :: 4 - Beta',
@@ -36,6 +36,6 @@ setup(
         'Operating System :: POSIX',
         'Programming Language :: Python',
         'Natural Language :: English',
-        'Natural Language :: Chinese (Simplified)'
+        'Natural Language :: Chinese (Simplified)',
         ],
     )

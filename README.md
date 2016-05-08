@@ -30,10 +30,11 @@ optional arguments:
 - Python lib
 
 ```
-from funny_tool.funny_tool import BLEACH, DYTT
+import funny_tool
 
-BLEACH()
-DYTT()
+funny_tool.bleach()
+funny_tool.dytt()
+funny_tool.dytt(2)
 ```
 
 ### License
