@@ -11,12 +11,12 @@ except ImportError:
 
 setup(
     name='funny_tool',
-    version='0.1.1',
+    version='0.1.2',
     description='The funny tools to download movies and comics',
     author='CCharlieLi',
     author_email='ccharlieli@live.com',
     url='https://github.com/CCharlieLi/funny_tool',
-    download_url = '',
+    download_url = 'https://github.com/CCharlieLi/funny_tool/releases',
     keywords = ['download', 'bleach', 'dytt'],
     license='MIT',
     packages=['funny_tool'],
