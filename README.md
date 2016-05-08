@@ -1,5 +1,6 @@
 Funny tools for downloading movies and BLEACH comics
 -----------------
+![](usage.png)
 
 ## Introduction
    - Automatically download movie links of latest movies from 电影天堂(http://www.ygdy8.net).
