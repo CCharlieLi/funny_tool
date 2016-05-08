@@ -11,7 +11,7 @@ except ImportError:
 
 setup(
     name='funny_tool',
-    version='0.1',
+    version='0.1.1',
     description='The funny tools to download movies and comics',
     author='CCharlieLi',
     author_email='ccharlieli@live.com',
