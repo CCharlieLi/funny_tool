@@ -20,11 +20,10 @@ setup(
     keywords = ['download', 'bleach', 'dytt'],
     license='MIT',
     packages=['funny_tool'],
+    install_requires=['BeautifulSoup', 'tqdm'],
     zip_safe=False,
-    entry_points={
-        'console_scripts': [
-            'funny_tool = funny_tool',
-        ]
+    entry_points = {
+        'console_scripts': ['ft=funny_tool.funny_tool:All'],
     },
     classifiers = [
         'Development Status :: 4 - Beta',
