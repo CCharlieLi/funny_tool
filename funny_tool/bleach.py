@@ -1,12 +1,13 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import urllib, urllib2, BeautifulSoup
+import urllib, urllib2
+from bs4 import BeautifulSoup
 import os, re, time, argparse, time, shutil
 from tqdm import tqdm
 
 class BLEACH(object):
-    '''docstring for BLEACH'''
+    
     def __init__(self):
         self.prefix = 'http://tieba.baidu.com'
 
@@ -45,10 +46,10 @@ class BLEACH(object):
         page_url = self.prefix + comic_url
         data = urllib2.urlopen(page_url).read().decode('utf-8', 'ignore')
         data.encode('utf-8')
-        soup = BeautifulSoup.BeautifulSoup(data)
+        soup = BeautifulSoup(data, 'lxml')
         lists = soup.findAll('img', {'class': 'BDE_Image'})
 
-        print('Downloading: ' + name)
+        print('Downloading: ' + name.encode('utf8'))
         # Define progress bar's length
         progress_bar = tqdm(unit='Pic', total=len(lists))
         count = 0
@@ -71,7 +72,7 @@ class BLEACH(object):
         # Parse html
         data = urllib2.urlopen(index_url).read().decode('utf-8', 'ignore')
         data.encode('utf-8')
-        soup = BeautifulSoup.BeautifulSoup(data)
+        soup = BeautifulSoup(data, 'lxml')
         lists = soup.findAll('a', {'class': 'j_th_tit '})
 
         for each in lists:
