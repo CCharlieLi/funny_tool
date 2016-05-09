@@ -9,12 +9,16 @@ Funny tools for downloading movies, tv serials and BLEACH comics
    - Comics will be saved in __BLEACH/[Name]__ in current directory.
    - No comics will be downloaded twice according to existence of __BLEACH/[Name]__.
 
+## Requirement
+
+Python 3
+
 ## Usage
 
 - Command line
 
 ```
-pip install funny_tool
+pip3 install funny_tool
 ```
 
 ```
@@ -37,6 +41,7 @@ import funny_tool
 funny_tool.bleach()
 funny_tool.dytt()
 funny_tool.dytt(2)
+funny_tool.shield()
 ```
 
 ## TODO

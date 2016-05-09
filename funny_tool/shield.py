@@ -1,12 +1,7 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-
 from bs4 import BeautifulSoup
 from tqdm import tqdm
-from utils.rrys_login import RRYS_Login
-import urllib, sys, os, time
-reload(sys)
-sys.setdefaultencoding( "utf-8" )
+from .utils.rrys_login import RRYS_Login
+import os, time
 
 class SHIELD(object):
 
@@ -15,6 +10,7 @@ class SHIELD(object):
         self.type = 'HR-HDTV'
         self.logfile = 'SHIELD.txt'
         self.link = ['迅雷'] # '电驴','网盘','城通'
+        self.path = os.getcwd() + '/' + self.logfile
 
     '''
     Calculate shows to download
@@ -34,31 +30,17 @@ class SHIELD(object):
         return string[string.find("S.H.I.E.L.D.") + 12: string.find("S.H.I.E.L.D.") + 18]
 
     '''
-    Make log file for links
-    '''
-    def mklog(self):
-        cwdir = os.getcwd()
-        self.path = cwdir + '/' + self.logfile
-        if os.path.exists(self.path):
-            return
-        else:
-            f = open(self.path, 'w')
-            f.close()
-
-    '''
     Get info from tv play list
     '''
     def get_serials(self, sersials_id = '30675'):
-        # Make log file if not exist
-        self.mklog()
-
         # Get last num
-        log = open(self.path, 'r+a')
+        log = open(self.path, 'a+')
+        log.seek(0)
         try:
             last = self.extract_string(log.readlines()[-(1 + len(self.link))])
             if 'S' not in last and 'E' not in last:
                 last = 'S00E00'
-        except Exception, e:
+        except:
             last = 'S00E00'
 
         # Parse html
@@ -68,7 +50,6 @@ class SHIELD(object):
         lists = soup.find_all('li', class_="clearfix", attrs={"format": self.type})
 
         count = self.calculate(lists, last)
-        print count
         # Define progress bar's length
         progress_bar = tqdm(unit='link', total=count)
 
