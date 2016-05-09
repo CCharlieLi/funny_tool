@@ -38,7 +38,12 @@ funny_tool.dytt()
 funny_tool.dytt(2)
 ```
 
-### License
+## TODO
+
+- Add Shield teleplay
+- Config management
+
+## License
 
 MIT
 

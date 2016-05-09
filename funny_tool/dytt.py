@@ -1,11 +1,13 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import urllib2, BeautifulSoup
+import urllib2
+from bs4 import BeautifulSoup
 import os, time, argparse
 from tqdm import tqdm
 
 class DYTT(object):
+    
     def __init__(self):
         self.prefix = 'http://www.ygdy8.net'
 
@@ -34,7 +36,7 @@ class DYTT(object):
 
         ''' find characters '''
 
-        soup = BeautifulSoup.BeautifulSoup(data)
+        soup = BeautifulSoup(data, 'lxml')
         ftp_link = soup.find('td', {'bgcolor': '#fdfddf'}).contents[0]['href']
         return str(ftp_link.encode('utf-8'))
 
@@ -64,7 +66,7 @@ class DYTT(object):
             # Parse html
             data = urllib2.urlopen(index_url).read().decode('gb2312', 'ignore')
             data.encode('utf-8')
-            soup = BeautifulSoup.BeautifulSoup(data)
+            soup = BeautifulSoup(data, 'lxml')
             lists = soup.findAll('a', {'class': 'ulink'})
             
             for each in lists[::-1]:
