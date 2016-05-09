@@ -11,7 +11,7 @@ except ImportError:
 
 setup(
     name='funny_tool',
-    version='0.2.0',
+    version='0.2.3',
     description='The funny tools to download movies and comics',
     author='CCharlieLi',
     author_email='ccharlieli@live.com',
@@ -19,8 +19,8 @@ setup(
     download_url = 'https://github.com/CCharlieLi/funny_tool/releases',
     keywords = ['download', 'bleach', 'dytt'],
     license='MIT',
-    packages=['funny_tool','funny_tool/utils'],
-    install_requires=['beautifulsoup4', 'tqdm'],
+    packages=['funny_tool', 'funny_tool.utils'],
+    install_requires=['beautifulsoup4', 'tqdm', 'requests', 'lxml'],
     zip_safe=False,
     entry_points = {
         'console_scripts': ['ft=funny_tool.funny_tool:all'],
@@ -30,7 +30,6 @@ setup(
         'Environment :: Console',
         'Intended Audience :: End Users/Desktop',
         'License :: OSI Approved :: MIT License',
-        'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3',
         'Operating System :: MacOS :: MacOS X',
         'Operating System :: Microsoft :: Windows',

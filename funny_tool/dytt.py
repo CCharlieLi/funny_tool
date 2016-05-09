@@ -1,9 +1,6 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-
-import urllib2
+import urllib.request
 from bs4 import BeautifulSoup
-import os, argparse
+import os
 from tqdm import tqdm
 
 class DYTT(object):
@@ -11,18 +8,7 @@ class DYTT(object):
     def __init__(self):
         self.prefix = 'http://www.ygdy8.net'
         self.logfile = 'DYTT.txt'
-
-    '''
-    Make log file for links
-    '''
-    def mklog(self):
-        cwdir = os.getcwd()
-        self.path = cwdir + '/' + self.logfile
-        if os.path.exists(self.path):
-            return
-        else:
-            f = open(self.path, 'w')
-            f.close()
+        self.path = os.getcwd() + '/' + self.logfile
 
     '''
     Get link from movie page
@@ -31,26 +17,23 @@ class DYTT(object):
         source_url = self.prefix + source_url
         
         # Open URL and get DOM
-        data = urllib2.urlopen(source_url).read().decode('gb2312', 'ignore')
-        data.encode('utf-8')
+        data = urllib.request.urlopen(source_url).read().decode('gb2312', 'ignore')
 
         # Find characters
         soup = BeautifulSoup(data, 'lxml')
         ftp_link = soup.find('td', {'bgcolor': '#fdfddf'}).contents[0]['href']
-        return str(ftp_link.encode('utf-8'))
+        return str(ftp_link)
 
     ''' 
     Get movies info from each page
     '''
     def get_Latest_URLs(self, page = 1):
-        # Make log file if not exist
-        self.mklog()
-
         # Get latest num
-        log = open(self.path, 'r+a')
+        log = open(self.path, 'a+')
+        log.seek(0)
         try:
             latest = int(log.readlines()[-1])
-        except Exception, e:
+        except:
             latest = 0
 
         count = 0
@@ -63,8 +46,7 @@ class DYTT(object):
             progress_bar = tqdm(unit='link', total=25)
 
             # Parse html
-            data = urllib2.urlopen(index_url).read().decode('gb2312', 'ignore')
-            data.encode('utf-8')
+            data = urllib.request.urlopen(index_url).read().decode('gb2312', 'ignore')
             soup = BeautifulSoup(data, 'lxml')
             lists = soup.findAll('a', {'class': 'ulink'})
             
