@@ -3,20 +3,21 @@
 
 import urllib2
 from bs4 import BeautifulSoup
-import os, time, argparse
+import os, argparse
 from tqdm import tqdm
 
 class DYTT(object):
     
     def __init__(self):
         self.prefix = 'http://www.ygdy8.net'
+        self.logfile = 'DYTT.txt'
 
     '''
     Make log file for links
     '''
     def mklog(self):
         cwdir = os.getcwd()
-        self.path = cwdir + '/DYTT.txt'
+        self.path = cwdir + '/' + self.logfile
         if os.path.exists(self.path):
             return
         else:
@@ -29,13 +30,11 @@ class DYTT(object):
     def get_FTP(self, source_url):
         source_url = self.prefix + source_url
         
-        ''' open URL and get DOM '''
-
+        # Open URL and get DOM
         data = urllib2.urlopen(source_url).read().decode('gb2312', 'ignore')
         data.encode('utf-8')
 
-        ''' find characters '''
-
+        # Find characters
         soup = BeautifulSoup(data, 'lxml')
         ftp_link = soup.find('td', {'bgcolor': '#fdfddf'}).contents[0]['href']
         return str(ftp_link.encode('utf-8'))
@@ -86,4 +85,4 @@ class DYTT(object):
         log.close()
         if count == 0:
             print('DYTT: No new movies to download since last time.')
-        print('DYTT: Download finished!  ' + str(count) + '  movies downloaded. Check BLEACH directory.')
+        print('DYTT: Download finished!  ' + str(count) + '  movies downloaded. Check DYTT.txt.')
