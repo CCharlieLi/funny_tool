@@ -8,17 +8,24 @@ Funny tools for downloading movies, tv serials and BLEACH comics
    - Automatically download latest comics BLEACH from __BLEACH__ __Baidu__ __Tieba__.
    - Comics will be saved in __BLEACH/[Name]__ in current directory.
    - No comics will be downloaded twice according to existence of __BLEACH/[Name]__.
+   - Automatically download TV serials from 人人影视 with given ID.
+   
+## Requirement
+
+__Python 3__
 
 ## Usage
 
 - Command line
 
 ```
-pip install funny_tool
+pip3 install funny_tool
 ```
 
 ```
-usage: ft [-h] [-b] [-d] [-p PAGE]
+usage: ft [-h] [-b] [-d] [-p PAGE] [-t TV] [-l]
+
+funny_tool: Download movies, tv serials and comics!
 
 optional arguments:
   -h, --help            show this help message and exit
@@ -26,7 +33,9 @@ optional arguments:
   -d, --dytt            Download latest movies from dytt.
   -p PAGE, --page PAGE  pages to retrieve when downloading movies from dytt,
                         should be used with -d.
-  -s, --shield          Download Marvels.Agents.of.S.H.I.E.L.D.
+  -t TV, --tv TV        Download TV serials by giving ID, use flag -l to check
+                        IDs.
+  -l, --list            TV serials list.
 ```
 
 - Python lib
@@ -36,8 +45,9 @@ import funny_tool
 
 funny_tool.bleach()
 funny_tool.dytt()
-funny_tool.dytt(2)
-funny_tool.shield()
+funny_tool.dytt(2) # retrieve 2 pages
+funny_tool.tv(30675)  # Shield
+funny_tool.tvlist()
 ```
 
 ## TODO

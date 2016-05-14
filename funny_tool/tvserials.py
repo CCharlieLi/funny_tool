@@ -1,16 +1,15 @@
 from bs4 import BeautifulSoup
 from tqdm import tqdm
 from .utils.rrys_login import RRYS_Login
-import os, time
+from .utils.TVList import get_list
+import os, time, re
 
-class SHIELD(object):
+class TVSerials(object):
 
     def __init__(self):
         self.prefix = 'http://www.zimuzu.tv/'
         self.type = 'HR-HDTV'
-        self.logfile = 'SHIELD.txt'
         self.link = ['迅雷'] # '电驴','网盘','城通'
-        self.path = os.getcwd() + '/' + self.logfile
 
     '''
     Calculate shows to download
@@ -24,15 +23,24 @@ class SHIELD(object):
         return latest_index - last_index
 
     '''
-    Extract 'S.H.I.E.L.D.'     TOTD: should replace with regex.
+    Extract S??E??
     '''
     def extract_string(self, string):
-        return string[string.find("S.H.I.E.L.D.") + 12: string.find("S.H.I.E.L.D.") + 18]
+        return re.search('(S\d{2}E\d{2})\.', string).groups()[0]
 
     '''
     Get info from tv play list
     '''
-    def get_serials(self, sersials_id = '30675'):
+    def get_serials(self, sersials_id):
+        tvlist = get_list()
+        if sersials_id not in tvlist.keys():
+            print('No TV serials for such a id.')
+            return
+
+        self.logfile = tvlist[sersials_id] + '.txt'
+        self.path = os.getcwd() + '/' + self.logfile
+        print('TV : Starting to download ' + tvlist[sersials_id])
+
         # Get last num
         log = open(self.path, 'a+')
         log.seek(0)
@@ -74,4 +82,4 @@ class SHIELD(object):
         log.close()
          # Close bar
         progress_bar.close()
-        print('SHIELD: Download finished!  ' + str(count) + ' tv serials downloaded. Check SHIELD.txt.')
+        print('TV : Download finished!  ' + str(count) + ' tv serials downloaded. Check ' + self.logfile)

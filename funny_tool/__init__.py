@@ -1,6 +1,7 @@
 from .bleach import BLEACH
 from .dytt import DYTT
-from .shield import SHIELD
+from .tvserials import TVSerials
+from .utils.TVList import get_list
 
 def bleach():
     b = BLEACH()
@@ -10,6 +11,10 @@ def dytt(page = 1):
     d = DYTT()
     d.get_Latest_URLs(page)
 
-def shield():
-	s = SHIELD()
-	s.get_serials()
+# id: String
+def tv(id):
+	s = TVSerials()
+	s.get_serials(id)
+
+def tvlist():
+	return get_list()

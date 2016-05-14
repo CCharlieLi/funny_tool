@@ -9,10 +9,15 @@ try:
 except ImportError:
     from distutils.core import setup
 
+README = ''
+with open('README.md', mode='r', encoding='utf-8') as rdm:
+    README = rdm.read()
+
 setup(
     name='funny_tool',
-    version='0.2.3',
+    version='0.2.5',
     description='The funny tools to download movies and comics',
+    long_description=README,
     author='CCharlieLi',
     author_email='ccharlieli@live.com',
     url='https://github.com/CCharlieLi/funny_tool',
@@ -30,7 +35,6 @@ setup(
         'Environment :: Console',
         'Intended Audience :: End Users/Desktop',
         'License :: OSI Approved :: MIT License',
-        'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3',
         'Operating System :: MacOS :: MacOS X',
         'Operating System :: Microsoft :: Windows',
