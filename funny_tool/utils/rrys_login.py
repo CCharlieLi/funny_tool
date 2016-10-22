@@ -10,8 +10,8 @@ class RRYS_Login(object):
         self.prefix = "http://www.zimuzu.tv"
         self.sess = requests.session()
         self.data = {
-            "account": "rrys_login",
-            "password": "12345678",
+            "account": "ccharlieli",
+            "password": "!Q@W#E",
             "remember": "1",
             "url_back": ""
             }

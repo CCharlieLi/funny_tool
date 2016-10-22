@@ -26,7 +26,10 @@ class TVSerials(object):
     Extract S??E??
     '''
     def extract_string(self, string):
-        return re.search('(S\d{2}E\d{2})\.', string).groups()[0]
+        try:
+            return re.search('(S\d{2}E\d{2})\.', string).groups()[0]
+        except:
+            return 'S99E99'
 
     '''
     Get info from tv play list
@@ -53,7 +56,7 @@ class TVSerials(object):
 
         # Parse html
         sess = RRYS_Login().getSession()
-        data = sess.get(self.prefix + 'resource/list/' + sersials_id).text
+        data = sess.get(self.prefix + 'gresource/list/' + sersials_id).text
         soup = BeautifulSoup(data, 'lxml')
         lists = soup.find_all('li', class_="clearfix", attrs={"format": self.type})
 
